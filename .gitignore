@@ -1,7 +1,14 @@
 #gitignore
+<<<<<<< HEAD
 node_modules
 .env
 .idea
 .fleet
 .vscode
 coverage
+=======
+
+# Ignore everything in this directory
+node_modules
+.env
+>>>>>>> 97a5cef (Initialization)

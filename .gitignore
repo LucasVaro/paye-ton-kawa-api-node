@@ -1,8 +1,7 @@
 #gitignore
-
-# Ignore everything in this directory
 node_modules
 .env
 .idea
 .fleet
 .vscode
+coverage

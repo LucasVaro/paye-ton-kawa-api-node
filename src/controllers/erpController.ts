@@ -1,24 +1,31 @@
-import { Request, Response, NextFunction } from 'express';
+import fetch from "node-fetch";
+import {BASE_URL} from "../models/constant";
 
 export default class ErpController {
-    static getIndex(req: Request, res: Response, next: NextFunction): void {
-        res.status(200).json({
-            message: 'Informations récupérées avec succès',
-            data: '/',
-        });
+    static getProduct(id: string): Promise<any> {
+        return fetch(BASE_URL + `/products/${id}`)
+            .then((res) => {
+                if (res.status !== 200) {
+                    throw new Error(res.statusText);
+                }
+                return res.json();
+            })
+            .then((data) => {
+                return data;
+            })
+            .catch((err) => {
+                throw new Error(`Error fetching product ${err}`);
+            });
     }
 
-    static getProduct(req: Request, res: Response, next: NextFunction): void {
-        res.status(200).json({
-            message: 'Informations récupérées avec succès',
-            data: 'Product',
-        });
-    }
-
-    static getProducts(req: Request, res: Response, next: NextFunction): void {
-        res.status(200).json({
-            message: 'Informations récupérées avec succès',
-            data: 'Products',
-        });
+    static getProducts(): Promise<any> {
+        return fetch(BASE_URL + '/products')
+            .then((res) => res.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((err) => {
+                throw new Error(`Error fetching products ${err}`);
+            });
     }
 }

@@ -7,6 +7,7 @@ import ErpRouter from "./routes/erpRoutes";
 import CrmRouter from "./routes/crmRoutes";
 import swaggerDocument from "../docs/swagger";
 import swaggerUi from "swagger-ui-express"
+import {errorHandler} from "./middlewares/errorMiddleware";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/erp', ErpRouter);
 app.use('/crm', CrmRouter);
+app.use(errorHandler);
 
 // Start the server
 const port = process.env.PORT || 3000;

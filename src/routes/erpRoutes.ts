@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import ErpController from "../controllers/erpController";
+import ErpMiddleware from "../middlewares/erpMiddleware";
 
 const router: Router = Router();
 
-router.get('/', ErpController.getIndex);
-router.get('/products', ErpController.getProducts);
-router.get('/product', ErpController.getProduct);
+router.get('/', ErpMiddleware.getIndex);
+
+router.get('/products/:id', ErpMiddleware.getProductMiddleware);
+
+router.get('/products', ErpMiddleware.getAllProductsMiddleware);
 
 export default router;

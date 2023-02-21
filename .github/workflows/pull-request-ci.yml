@@ -41,7 +41,6 @@ jobs:
       - name: Building..
         run: npm run build --if-present
       - name: GitHub Checks
-        continue-on-error: true
         uses: LouisBrunner/checks-action@v1.6.0
         if: always()
         with:

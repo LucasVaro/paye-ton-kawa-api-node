@@ -3,7 +3,8 @@ FROM node:18.13.0
 COPY ./src .
 COPY ./docs .
 COPY ./package.json ./package-lock.json ./
-RUN npm ci --quiet --no-optional --no-audit --prefix .
+COPY ./tsconfig.json .
+RUN npm ci --quiet --omit=optional --no-audit --prefix .
 
 RUN npm run build
 

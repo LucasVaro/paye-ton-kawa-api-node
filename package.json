@@ -6,9 +6,8 @@
         "node": "18.13.0",
         "npm": "8.19.3"
     },
-    "type": "module",
     "scripts": {
-        "start": "npm run build && node ./dist/src/index.js",
+        "start": "node ./dist/src/index.js",
         "dev": "nodemon",
         "build": "tsc",
         "lint": "eslint --ext .ts .",

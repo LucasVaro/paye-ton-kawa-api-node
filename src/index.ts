@@ -9,7 +9,9 @@ import Documentation from './docs/docs-output.json'
 import swaggerUi from 'swagger-ui-express'
 import errorMiddleware from './middlewares/errorMiddleware'
 import authMiddleware from './middlewares/authMiddleware'
+import * as dotenv from 'dotenv'
 
+dotenv.config()
 const app = express()
 
 app.use(logger('dev'))
@@ -27,6 +29,7 @@ app.use(errorMiddleware.handleError)
 
 // Start the server
 const port = process.env.PORT || 3000
+
 app.listen(port, () => {
     console.log(`Listening at http://localhost:${port}/`)
 })

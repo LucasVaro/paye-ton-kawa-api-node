@@ -1,56 +1,56 @@
 name: master-workflow
 
 on:
-  push:
-    branches: ["master"]
+    push:
+        branches: ['master']
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.13.0]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        strategy:
+            matrix:
+                node-version: [18.13.0]
+                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run test:coverage
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
+            - run: npm ci
+            - run: npm run build --if-present
+            - run: npm run test:coverage
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Build Docker Image
-        run: |
-          docker build -t node-api:latest .
-      - name: Login to Docker Hub
-        run: |
-          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASS}}
-      - name: Tag Docker Image On Docker Hub
-        run: |
-          docker tag api-node:latest rovarg/api-node:latest
-      - name: Push Docker Image On Docker Hub
-        run: |
-          docker push rovarg/api-node:latest
-      - name: Pull Docker Image From Docker Hub
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{secrets.SERVER_HOST}}
-          username: ${{secrets.SERVER_USER}}
-          password: ${{secrets.SERVER_PASS}}
-          port: ${{secrets.PORT}}
-          script: |
-            docker pull rovarg/api-node:latest
-            docker run -d -p 8023:8023 api-node:latest
+            - name: Build Docker Image
+              run: |
+                  docker build -t node-api:latest .
+            - name: Login to Docker Hub
+              run: |
+                  docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASS}}
+            - name: Tag Docker Image On Docker Hub
+              run: |
+                  docker tag api-node:latest rovarg/api-node:latest
+            - name: Push Docker Image On Docker Hub
+              run: |
+                  docker push rovarg/api-node:latest
+            - name: Pull Docker Image From Docker Hub
+              uses: appleboy/ssh-action@v0.1.7
+              with:
+                  host: ${{secrets.SERVER_HOST}}
+                  username: ${{secrets.SERVER_USER}}
+                  password: ${{secrets.SERVER_PASS}}
+                  port: ${{secrets.PORT}}
+                  script: |
+                      docker pull rovarg/api-node:latest
+                      docker run -d -p 8023:8023 api-node:latest

@@ -8,6 +8,7 @@ export default class ErpController {
                 if (res.status !== 200) {
                     throw new Error(res.statusText)
                 }
+
                 return res.json()
             })
             .then((data) => {

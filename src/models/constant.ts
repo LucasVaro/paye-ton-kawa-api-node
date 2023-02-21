@@ -1,5 +1,6 @@
-export const BASE_URL = 'https://615f5fb4f7254d0017068109.mockapi.io/api/v1';
-export const PUBLIC_KEY = '-----BEGIN PUBLIC KEY-----\n' +
+export const BASE_URL = 'https://615f5fb4f7254d0017068109.mockapi.io/api/v1'
+export const PUBLIC_KEY =
+    '-----BEGIN PUBLIC KEY-----\n' +
     'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0Qv0R6kRFrIOj+bN6Voc\n' +
     'gGV/C3UJq5qGNjl96wMySgEuBzBnACpQaTN/Dvp4T5GtjHE5U5uoo0Jv7tD4VW2D\n' +
     'Ab9aW0yKSYUwD4ykZkdYxYKuiE1j2sXscvNmXpDVqhAGE8iIqUvwyzyno6OyP53d\n' +
@@ -7,8 +8,9 @@ export const PUBLIC_KEY = '-----BEGIN PUBLIC KEY-----\n' +
     'ozXakMbHHVM2Tb63pfkZdnw9SXWlM5wjaYpVX6AWFuOCoaPHD4CpbwS3B1JeK429\n' +
     '0hpeQtzoY19l5hE3h9OVj4n1H9VDK+2enzsURCwW8D914Uiae3aOuaEJTf5UTQOr\n' +
     'eQIDAQAB\n' +
-    '-----END PUBLIC KEY-----';
-export const PRIVATE_KEY = '-----BEGIN RSA PRIVATE KEY-----\n' +
+    '-----END PUBLIC KEY-----'
+export const PRIVATE_KEY =
+    '-----BEGIN RSA PRIVATE KEY-----\n' +
     'MIIEpAIBAAKCAQEA0Qv0R6kRFrIOj+bN6VocgGV/C3UJq5qGNjl96wMySgEuBzBn\n' +
     'ACpQaTN/Dvp4T5GtjHE5U5uoo0Jv7tD4VW2DAb9aW0yKSYUwD4ykZkdYxYKuiE1j\n' +
     '2sXscvNmXpDVqhAGE8iIqUvwyzyno6OyP53d800ko+8SZsFBI5DQh0+hLJ76W3PO\n' +
@@ -34,4 +36,4 @@ export const PRIVATE_KEY = '-----BEGIN RSA PRIVATE KEY-----\n' +
     'crvi0QKBgQDaM+y5E+JyxTiNOrJpzEXWZDNAvdX5tdr+mLDP0s2Dlk4YTtcbQjQ3\n' +
     'rmhyOyIq+PjrmjsykxX4lhX+LXeuF0Pfu2H7/V8UN2YcLURg09l6TruOqHnSVLIB\n' +
     '6LFJG4btrecmfIJhTrLbbgth4rYeO8e6HXEhbqtlfFdEkDOuQtVg8A==\n' +
-    '-----END RSA PRIVATE KEY-----';
+    '-----END RSA PRIVATE KEY-----'

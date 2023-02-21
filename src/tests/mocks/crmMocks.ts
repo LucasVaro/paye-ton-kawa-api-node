@@ -1,4 +1,3 @@
-import { products } from './erpMocks'
 import { Customer } from '../../models/customer'
 
 export const customers: Customer[] = [

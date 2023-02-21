@@ -5,7 +5,7 @@ import logger from 'morgan'
 import cors from 'cors'
 import ErpRouter from './routes/erpRoutes'
 import CrmRouter from './routes/crmRoutes'
-import swaggerDocument from '../docs/swagger'
+import Documentation from './docs/docs-output.json'
 import swaggerUi from 'swagger-ui-express'
 import errorMiddleware from './middlewares/errorMiddleware'
 import authMiddleware from './middlewares/authMiddleware'
@@ -19,8 +19,8 @@ app.use(cookieParser())
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(Documentation))
 app.use(authMiddleware.verifyToken)
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/erp', ErpRouter)
 app.use('/crm', CrmRouter)
 app.use(errorMiddleware.handleError)

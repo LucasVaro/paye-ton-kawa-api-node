@@ -12,7 +12,6 @@ export default class authMiddleware {
                 .send('A token is required for authentication')
         }
         try {
-            console.log(token)
             jwt.verify(token, PUBLIC_KEY, { algorithms: ['RS256'] })
         } catch (err) {
             return res.status(401).send('Invalid Token')

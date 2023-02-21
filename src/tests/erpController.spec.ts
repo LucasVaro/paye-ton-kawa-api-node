@@ -7,7 +7,7 @@ describe("ErpController", function () {
     jest.spyOn(ErpController, "getProducts").mockResolvedValue(products);
     const data = await ErpController.getProducts();
     expect(ErpController.getProducts).toHaveBeenCalledTimes(1);
-    expect(data).not.toEqual(products);
+    expect(data).toEqual(products);
   });
 
   it("should return product with id 1", async function () {

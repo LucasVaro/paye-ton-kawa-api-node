@@ -6,7 +6,6 @@
         "node": "18.13.0",
         "npm": "8.19.3"
     },
-    "type": "module",
     "scripts": {
         "start": "npm run build && node ./dist/index.js",
         "dev": "nodemon index.ts",

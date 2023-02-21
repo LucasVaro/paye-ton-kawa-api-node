@@ -1,32 +1,40 @@
 import request from 'supertest'
 import express from 'express'
-import index from '../routes/index'
+import ErpRouter from '../routes/erpRoutes'
+import CrmRouter from '../routes/crmRoutes'
+import indexRouter from '../routes'
 
 const app = express()
-app.use('/', index)
+app.use('/', indexRouter)
+app.use('/erp', ErpRouter)
+app.use('/crm', CrmRouter)
 
-describe('Good Home Routes', function () {
-    test('responds to /', async () => {
-        const res = await request(app).get('/')
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toEqual('Hello World!')
+describe('Good Index Routes', function () {
+    it('should return 200 Status', async function () {
+        const res = await request(app).get('/erp')
+        expect(res.status).toBe(200)
     })
 
-    it('not responds to /about', async () => {
+    it('should return 200 Status', async () => {
+        const res = await request(app).get('/erp')
+        expect(res.status).toBe(200)
+        expect(res.text).toEqual('ERP Controller')
+    })
+
+    it('should return 200 Status', async () => {
+        const res = await request(app).get('/crm')
+        expect(res.status).toBe(200)
+        expect(res.text).toEqual('CRM Index')
+    })
+
+    it('should not return CRM Index', async () => {
+        const res = await request(app).get('/erp')
+        expect(res.status).toBe(200)
+        expect(res.text).not.toEqual('CRM Index')
+    })
+
+    it('should not return 200 Status', async () => {
         const res = await request(app).get('/about')
-        expect(res.statusCode).not.toBe(200)
-        expect(res.text).not.toEqual('About Page')
-    })
-
-    it('responds to /', async () => {
-        const res = await request(app).get('/')
-        expect(res.statusCode).toBe(200)
-        expect(res.text).toEqual('Hello World!')
-    })
-
-    it('not responds to /about', async () => {
-        const res = await request(app).get('/about')
-        expect(res.statusCode).not.toBe(200)
-        expect(res.text).not.toEqual('About Page')
+        expect(res.status).not.toBe(200)
     })
 })

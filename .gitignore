@@ -4,7 +4,4 @@ node_modules
 .idea
 .fleet
 .vscode
-<<<<<<< HEAD
 coverage
-=======
->>>>>>> 70032fd (Initialization)

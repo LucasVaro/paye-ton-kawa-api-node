@@ -7,7 +7,8 @@ import ErpRouter from "./routes/erpRoutes";
 import CrmRouter from "./routes/crmRoutes";
 import swaggerDocument from "../docs/swagger";
 import swaggerUi from "swagger-ui-express"
-import {errorHandler} from "./middlewares/errorMiddleware";
+import errorMiddleware from "./middlewares/errorMiddleware";
+import authMiddleware from "./middlewares/authMiddleware"
 
 const app = express();
 
@@ -18,10 +19,11 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(authMiddleware.verifyToken)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/erp', ErpRouter);
 app.use('/crm', CrmRouter);
-app.use(errorHandler);
+app.use(errorMiddleware.handleError);
 
 // Start the server
 const port = process.env.PORT || 3000;

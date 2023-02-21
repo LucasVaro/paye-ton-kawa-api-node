@@ -16,4 +16,11 @@ describe('ErpController', function () {
         expect(ErpController.getProduct).toHaveBeenCalledTimes(1)
         expect(data).toEqual(products[0])
     })
+
+    it('should not return product with id 1', async function () {
+        jest.spyOn(ErpController, 'getProduct').mockResolvedValue(products[1])
+        const data = await ErpController.getProduct('1')
+        expect(ErpController.getProduct).toHaveBeenCalledTimes(2)
+        expect(data).not.toEqual(products[0])
+    })
 })

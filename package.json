@@ -14,11 +14,12 @@
         "lint:fix": "eslint --ext .ts . --fix",
         "pq": "pretty-quick",
         "lint-staged": "lint-staged",
-        "test": "jest --watchAll",
+        "test": "jest",
+        "test:watch": "jest --watchAll",
         "test:coverage": "jest --coverage"
     },
     "lint-staged": {
-        "**/*.ts": [
+        "**/*.{ts,json,yml}": [
             "eslint --fix",
             "pretty-quick --staged"
         ],

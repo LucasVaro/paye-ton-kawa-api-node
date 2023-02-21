@@ -1,8 +1,9 @@
 import { BASE_URL } from "../models/constant";
 import api from "../axios-api/api";
+import {Product} from "../models/product";
 
 export default class ErpController {
-  static getProduct(id: string): Promise<any> {
+  static getProduct(id: string): Promise<Product> {
     return api
       .get(BASE_URL + `/products/${id}`)
       .then((res) => {
@@ -19,8 +20,7 @@ export default class ErpController {
       });
   }
 
-
-  static getProducts(): Promise<any> {
+  static getProducts(): Promise<Product[]> {
     return api
       .get(BASE_URL + "/products")
       .then((res) => {

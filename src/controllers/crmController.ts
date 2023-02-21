@@ -1,8 +1,9 @@
 import { BASE_URL } from "../models/constant";
 import api from "../axios-api/api";
+import {Customer} from "../models/customer";
 
 export default class CrmController {
-  static getAllCustomers(): Promise<void> {
+  static getAllCustomers(): Promise<Customer[]> {
     return api
       .get(BASE_URL + "/customers")
       .then((res) => {
@@ -16,7 +17,7 @@ export default class CrmController {
       });
   }
 
-  static getCustomer(id: string): Promise<void> {
+  static getCustomer(id: string): Promise<Customer> {
     return api
       .get(BASE_URL + `/customers/${id}`)
       .then((res) => {

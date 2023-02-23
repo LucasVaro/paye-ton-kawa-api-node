@@ -8,8 +8,6 @@ RUN npm ci --quiet --omit=optional --no-audit --prefix .
 
 RUN npm run build
 
-COPY ./build .
-
 ENV NODE_ENV=prod
 
 CMD [ "npm", "start"]

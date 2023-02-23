@@ -2,24 +2,44 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Paye Ton Kawa",
+    "title": "Paye Ton Kawa - Webshop API",
     "description": "Node API Documentation"
   },
   "host": "localhost:3000",
-  "basePath": "/api-docs",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "ERP",
+      "description": "Endpoints"
+    },
+    {
+      "name": "CRM",
+      "description": "Endpoints"
+    }
+  ],
   "schemes": [],
-  "securityDefinitions": {},
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Access JWT"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/erp/": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
-          }
+        "tags": [
+          "ERP"
         ],
+        "description": "ERP router index",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -30,22 +50,25 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/erp/products/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "ERP"
+        ],
+        "description": "Endpoint to get a specific product",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "token",
-            "in": "query",
             "type": "string"
           }
         ],
@@ -59,19 +82,21 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/erp/products": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
-          }
+        "tags": [
+          "ERP"
         ],
+        "description": "Endpoint to get all products",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -82,19 +107,21 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/crm/": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
-          }
+        "tags": [
+          "CRM"
         ],
+        "description": "CRM router index",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -105,19 +132,21 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/crm/customers": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
-          }
+        "tags": [
+          "CRM"
         ],
+        "description": "Endpoint to get all customers",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -128,23 +157,26 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/crm/customers/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "CRM"
+        ],
+        "description": "Endpoint to get a specific customer",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
           }
         ],
         "responses": {
@@ -157,23 +189,26 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/crm/customers/{customerId}/orders": {
       "get": {
-        "description": "",
+        "tags": [
+          "CRM"
+        ],
+        "description": "Endpoint to get all orders of a customer",
         "parameters": [
           {
             "name": "customerId",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
           }
         ],
         "responses": {
@@ -186,12 +221,20 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/crm/customers/{customerId}/orders/{orderId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "CRM"
+        ],
+        "description": "Endpoint to get all products of a customer",
         "parameters": [
           {
             "name": "customerId",
@@ -204,23 +247,132 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "token",
-            "in": "query",
-            "type": "string"
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Customers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Jean Michel"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Jean"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Michel"
+        },
+        "username": {
+          "type": "string",
+          "example": "jeanmich34"
+        },
+        "address": {
+          "type": "array",
+          "example": [
+            "Address"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "profile": {
+          "type": "array",
+          "example": [
+            "male",
+            "34 years old"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "company": {
+          "type": "string",
+          "example": "company name"
+        },
+        "email": {
+          "type": "string",
+          "example": "jeanmich34@gmail.com"
+        },
+        "createdAt": {
+          "type": "number",
+          "example": 1677195096830
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "createdAt": {
+          "type": "number",
+          "example": 1677195096830
+        },
+        "customerId": {
+          "type": "number",
+          "example": 1
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Mon beau produit"
+        },
+        "createdAt": {
+          "type": "function"
+        },
+        "details": {
+          "type": "object",
+          "properties": {
+            "price": {
+              "type": "number",
+              "example": 50
+            },
+            "description": {
+              "type": "string",
+              "example": "Produit qualitativement qualitatif"
+            },
+            "color": {
+              "type": "string",
+              "example": "Rose"
+            }
+          }
+        },
+        "stock": {
+          "type": "number",
+          "example": 27
         }
       }
     }

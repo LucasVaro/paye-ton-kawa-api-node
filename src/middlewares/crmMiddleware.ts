@@ -3,10 +3,20 @@ import CrmController from "../controllers/crmController";
 
 export default class CrmMiddleware {
     static getIndexMiddleware(req: Request, res: Response): void {
+        //#swagger.tags = ['CRM']
+        //#swagger.description = 'CRM router index'
+        /* #swagger.security = [{
+            "apiKeyAuth": []
+        }] */
         res.send('CRM Index');
     }
 
     static async getAllCustomersMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+        //#swagger.tags = ['CRM']
+        //#swagger.description = 'Endpoint to get all customers'
+        /* #swagger.security = [{
+            "apiKeyAuth": []
+        }] */
         try {
             const customers = await CrmController.getAllCustomers();
             res.status(200).json(customers);
@@ -16,6 +26,11 @@ export default class CrmMiddleware {
     }
 
     static async getCustomerMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+        //#swagger.tags = ['CRM']
+        //#swagger.description = 'Endpoint to get a specific customer'
+        /* #swagger.security = [{
+            "apiKeyAuth": []
+        }] */
         try {
             const id = req.params.id;
             const order = await CrmController.getCustomer(id);
@@ -26,6 +41,11 @@ export default class CrmMiddleware {
     }
 
     static async getCustomerOrdersMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+        //#swagger.tags = ['CRM']
+        //#swagger.description = 'Endpoint to get all orders of a customer'
+        /* #swagger.security = [{
+            "apiKeyAuth": []
+        }] */
         try {
             const customerId = req.params.customerId;
             console.log(customerId);
@@ -37,6 +57,11 @@ export default class CrmMiddleware {
     }
 
     static async getCustomerOrderProductsMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+        //#swagger.tags = ['CRM']
+        //#swagger.description = 'Endpoint to get all products of a customer's order'
+        /* #swagger.security = [{
+            "apiKeyAuth": []
+        }] */
         try {
             const customerId = req.params.customerId;
             const orderId = req.params.orderId;

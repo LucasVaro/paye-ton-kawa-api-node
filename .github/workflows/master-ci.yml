@@ -34,7 +34,7 @@ jobs:
 
             - name: Build Docker Image
               run: |
-                  docker build -t node-api:latest .
+                  docker build -t api-node:latest .
             - name: Login to Docker Hub
               run: |
                   docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASS}}

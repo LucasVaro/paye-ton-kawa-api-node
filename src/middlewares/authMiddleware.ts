@@ -4,8 +4,9 @@ import { PUBLIC_KEY } from '../models/constant'
 
 export default class authMiddleware {
     static verifyToken(req: Request, res: Response, next: NextFunction) {
-        const token =
-            req.body.token || req.query.token || req.headers['x-access-token']
+        const token = req.headers['authorization']
+        console.log(req.headers)
+        console.log(token)
         if (!token) {
             return res
                 .status(403)

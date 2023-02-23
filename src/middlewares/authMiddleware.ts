@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
-import { PUBLIC_KEY } from '../models/constant'
 
 export default class authMiddleware {
     static verifyToken(req: Request, res: Response, next: NextFunction) {
@@ -12,7 +11,14 @@ export default class authMiddleware {
                 .send('A token is required for authentication')
         }
         try {
-            jwt.verify(token, PUBLIC_KEY, { algorithms: ['RS256'] })
+            const publicKeyJSON = process.env.PUBLIC_KEY ?? '';
+            if (publicKeyJSON === '') {
+                const err = new Error('No public key')
+                console.error(err)
+                throw err
+            }
+            const {publicKey} = JSON.parse(publicKeyJSON);
+            jwt.verify(token, publicKey, { algorithms: ['RS256'] })
         } catch (err) {
             return res.status(401).send('Invalid Token')
         }

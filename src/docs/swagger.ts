@@ -1,4 +1,7 @@
+const dotenv = require('dotenv');
 const swaggerAutogen = require("swagger-autogen")
+
+dotenv.config()
 
 const doc = {
     info: {
@@ -6,7 +9,7 @@ const doc = {
         title: 'Paye Ton Kawa - Webshop API',
         description: 'Node API Documentation',
     },
-    host: process.env.SWAGGER_URL || 'localhost:3000',
+    host: process.env.SWAGGER_URL || 'http://localhost:3000',
     basePath: '/',
     schemes: [],
     consumes: ['application/json'],

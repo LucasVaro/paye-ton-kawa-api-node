@@ -10,4 +10,6 @@ RUN npm run build
 
 ENV NODE_ENV=prod
 
+EXPOSE 8028
+
 CMD [ "npm", "start"]

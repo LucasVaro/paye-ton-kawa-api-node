@@ -53,5 +53,5 @@ jobs:
                   port: ${{secrets.PORT}}
                   script: |
                       docker pull rovarg/api-node:latest
-                      docker restart mspr-api-node
+                      docker run --name mspr-api-node -d -p 8028:3000 rovarg/api-node:latest
                       

@@ -20,7 +20,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(Documentation))
 app.use(authMiddleware.verifyToken)
 app.use('/erp', ErpRouter)

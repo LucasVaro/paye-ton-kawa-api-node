@@ -363,7 +363,7 @@
         },
         "createdAt": {
           "type": "number",
-          "example": 1677197030394
+          "example": 1677229670855
         }
       }
     },
@@ -376,7 +376,7 @@
         },
         "createdAt": {
           "type": "number",
-          "example": 1677197030394
+          "example": 1677229670855
         },
         "customerId": {
           "type": "number",

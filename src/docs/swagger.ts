@@ -30,7 +30,7 @@ const doc = {
         }
     },
     definitions: {
-        Customers: {
+        Customer: {
             id: 1,
             name: 'Jean Michel',
             firstName: 'Jean',

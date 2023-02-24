@@ -9,7 +9,7 @@ const doc = {
         title: 'Paye Ton Kawa - Webshop API',
         description: 'Node API Documentation',
     },
-    host: process.env.SWAGGER_URL || 'http://localhost:3000',
+    host: 'https://ptk-api-node.gbv-data.com',
     basePath: '/',
     schemes: [],
     consumes: ['application/json'],

@@ -5,7 +5,7 @@
     "title": "Paye Ton Kawa - Webshop API",
     "description": "Node API Documentation"
   },
-  "host": "http://toto:8080/",
+  "host": "https://ptk-api-node.gbv-data.com",
   "basePath": "/",
   "tags": [
     {
@@ -363,7 +363,7 @@
         },
         "createdAt": {
           "type": "number",
-          "example": 1677230652199
+          "example": 1677232097785
         }
       }
     },
@@ -376,7 +376,7 @@
         },
         "createdAt": {
           "type": "number",
-          "example": 1677230652199
+          "example": 1677232097785
         },
         "customerId": {
           "type": "number",
